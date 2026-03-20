@@ -4,20 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- El título se llenará desde data.js dinámicamente, pero dejamos un valor por defecto -->
-    <title id="page-title">SRAW Cia. Ltda</title>
+
+    <title id="page-title">SRAW Cia. Ltda - Tarjeta Digital</title>
     <meta name="description" id="page-desc" content="Servicios en operaciones petroleras.">
 
-    <!-- Modern Font: Inter -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tarjetasraw.netlify.app/">
+    <meta property="og:title" content="SRAW Cia. Ltda - Tarjeta Digital">
+    <meta property="og:description"
+        content="Servicios especializados en operaciones petroleras. Conoce nuestro perfil profesional.">
+    <meta property="og:image" content="https://tarjetasraw.netlify.app/assets/img/srwacialtda.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SRAW Cia. Ltda">
+    <meta name="twitter:description" content="Servicios en operaciones petroleras.">
+    <meta name="twitter:image" content="https://tarjetasraw.netlify.app/assets/img/srwacialtda.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -46,8 +55,13 @@
             <!-- Inyectado mediante data.js y script.js -->
         </section>
 
+
         <!-- 8.3 Botón Principal (Save Contact) -->
         <section class="main-action fade-in staggered-2">
+            <div class="profile-container">
+                <h2 id="profile-name" class="profile-name">Washington Hidalgo</h2>
+                <p id="profile-title" class="profile-desc">Presidente de SRWA Cia. Ltda</p>
+            </div>
             <button id="save-contact-btn" class="primary-btn">
                 <i data-lucide="user-plus" class="icon"></i>
                 Guardar contacto

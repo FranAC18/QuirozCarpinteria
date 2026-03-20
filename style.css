@@ -226,14 +226,18 @@ body {
 /* Botón Principal */
 .main-action {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Pone uno debajo del otro */
+    align-items: center;    /* Centra horizontalmente el texto y el botón */
+    gap: 12px;              /* <--- ESTA ES LA CLAVE: Controla la separación exacta */
+    margin-top: 15px;       /* Espacio respecto a lo que haya arriba */
+    width: 100%;
 }
 
 .primary-btn {
     width: 100%;
-    min-height: 56px; /* Área táctil accesible */
+    min-height: 56px; 
     padding: 18px 24px;
-    border-radius: 20px;
+    border-radius: 12px; /* <--- Cambiado de 20px a 12px para reducir el borde */
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-highlight));
     color: #ffffff;
     font-family: inherit;
@@ -392,6 +396,28 @@ body {
 /* Efecto opcional para que el mapa se integre a la paleta fría */
 .map-wrapper iframe:hover {
     filter: none; /* Cuando el usuario pasa el mouse, se ve a todo color */
+}
+
+/* Contenedor para centrar todo el bloque */
+.profile-container {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+/* Estilo para el Nombre */
+.profile-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;    /* Tamaño moderado (puedes bajarlo a 1.2rem si lo quieres más pequeño) */
+    font-weight: 800;     /* Extra negrita como en la imagen */
+    color: var(--text-primary);       /* Azul oscuro profundo */
+    margin-bottom: 2px;   /* Espacio mínimo con la línea de abajo */
+}
+
+/* Estilo para el Cargo/Descripción */
+.profile-desc {
+    margin: 0;              /* Eliminamos el margen por defecto del párrafo */
+    font-size: 0.9rem;
+    color: #8da9f7;
 }
 
 /* Desktop adjustments */
