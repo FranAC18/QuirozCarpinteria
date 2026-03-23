@@ -1,8 +1,3 @@
-/**
- * Script para renderizar datos a partir del objeto global 'cardData' ubicado en data.js.
- * Esto mantiene un archivo general donde el html toma sus campos dinamicamente, permitiendo modificar datos en un solo lugar.
- */
-
 const LUCIDE_ICONS = {
     facebook: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
     instagram: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
@@ -36,29 +31,33 @@ function populateDOM() {
     // 3. Acciones Rápidas (USANDO EL DICCIONARIO)
     const quickActionsContainer = document.getElementById('quick-actions');
     const waUrl = `https://wa.me/${cardData.contact.phone}?text=${encodeURIComponent(cardData.contact.whatsappMessage)}`;
-    
+
     quickActionsContainer.innerHTML = `
         <a href="${waUrl}" target="_blank" class="action-btn" aria-label="WhatsApp">${LUCIDE_ICONS.whatsapp}</a>
         <a href="tel:+${cardData.contact.phone}" class="action-btn" aria-label="Llamar">${LUCIDE_ICONS.phone}</a>
         <a href="mailto:${cardData.contact.email}" class="action-btn" aria-label="Email">${LUCIDE_ICONS.mail}</a>
-        <a href="https://${cardData.contact.url.replace('https://','')}" target="_blank" class="action-btn" aria-label="Web">${LUCIDE_ICONS.globe}</a>
     `;
 
     // 4. Redes Sociales (USANDO EL DICCIONARIO)
     const socialLinksContainer = document.getElementById('social-links');
-    socialLinksContainer.innerHTML = ''; 
+    socialLinksContainer.innerHTML = '';
     cardData.social.forEach(social => {
         const a = document.createElement('a');
         a.href = social.url;
         a.target = "_blank";
         a.className = "social-btn";
-        a.innerHTML = LUCIDE_ICONS[social.icon] || ''; 
+        a.innerHTML = LUCIDE_ICONS[social.icon] || '';
         socialLinksContainer.appendChild(a);
     });
 
     // 5. Iconos en botones estáticos
     document.getElementById('save-contact-btn').insertAdjacentHTML('afterbegin', LUCIDE_ICONS['user-plus']);
     document.getElementById('share-btn').insertAdjacentHTML('afterbegin', LUCIDE_ICONS.share);
+    const mapIframe = document.getElementById('google-map');
+    if (mapIframe && cardData.contact.googleMapsEmbed) {
+        mapIframe.src = cardData.contact.googleMapsEmbed;
+    }
+
 }
 
 /**
