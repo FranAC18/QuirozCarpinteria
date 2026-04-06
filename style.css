@@ -60,14 +60,19 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Formas de Fondo Animadas */
+/* =========================================
+   FORMAS DE FONDO ANIMADAS
+   ========================================= */
 .bg-shape {
     position: fixed;
     border-radius: 50%;
     filter: blur(80px);
     z-index: -1;
     animation: float 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    opacity: 0.6;
+    opacity: 0.5;
+    pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .shape-1 { width: 300px; height: 300px; background: var(--shape-1); top: 10%; left: -10%; }
@@ -80,7 +85,9 @@ body {
     100% { transform: translate(-40px, 60px) scale(0.9); }
 }
 
-/* Tarjeta Contenedor */
+/* =========================================
+   TARJETA CONTENEDOR
+   ========================================= */
 .card-container {
     background-color: #ffffff;
     background-blend-mode: overlay;
@@ -96,6 +103,7 @@ body {
     flex-direction: column;
     gap: var(--spacing-large);
     position: relative;
+    z-index: 1;
     overflow: hidden;
 }
 
@@ -109,7 +117,9 @@ body {
     pointer-events: none;
 }
 
-/* Cabecera */
+/* =========================================
+   CABECERA & PERFIL
+   ========================================= */
 .profile-header {
     text-align: center;
     display: flex;
@@ -148,7 +158,7 @@ body {
     background-color: var(--glass-bg);
 }
 
-/* ✨ SIERRA ANIMADA - Perfil */
+/* ✨ SIERRA ANIMADA */
 .saw-decoration {
     position: absolute;
     bottom: 8px;
@@ -246,7 +256,6 @@ body {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 
-    /* Glassmorphism Base */
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
@@ -254,12 +263,9 @@ body {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     border-radius: 18px;
 
-    /* Tipografía */
     font-weight: 600;
     font-size: 15px;
     color: var(--text-primary);
-
-    /* Animación */
     transition: var(--transition-smooth);
 }
 
@@ -300,7 +306,9 @@ body {
     color: inherit;
 }
 
-/* Grid de acciones */
+/* =========================================
+   LAYOUT & SECCIONES
+   ========================================= */
 .actions-grid {
     display: flex;
     align-items: center;
@@ -315,7 +323,6 @@ body {
     justify-content: flex-end;
 }
 
-/* Separador */
 .section-divider {
     border: 0;
     height: 1px;
@@ -324,7 +331,6 @@ body {
     margin: 0 auto;
 }
 
-/* Redes Sociales */
 .social-links {
     display: flex;
     justify-content: center;
@@ -332,37 +338,69 @@ body {
     flex-wrap: wrap;
 }
 
-/* Compartir */
 .share-section {
     display: flex;
     justify-content: center;
     margin-top: -12px;
 }
 
-/* Mapa */
-.map-section { padding: 10px; text-align: center; }
-
+/* Títulos de sección (Reset limpio) */
 .section-title {
     display: flex; align-items: center; justify-content: center;
-    gap: 8px; font-size: 0.9rem; margin-bottom: var(--spacing-micro);
+    gap: 8px; font-size: 0.9rem; margin: 0 0 var(--spacing-micro) 0; padding: 0;
     color: var(--text-secondary);
     font-weight: 600;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
-.map-wrapper iframe {
-    border-radius: 16px;
-    filter: saturate(0.8) contrast(1.1);
-    transition: var(--transition-smooth);
+.social-title-wrapper {
     width: 100%;
-    height: 180px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.social-title-wrapper .section-title {
+    pointer-events: auto;
+}
+
+/* =========================================
+   MAPA
+   ========================================= */
+.map-section { padding: 10px; text-align: center; }
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
 }
 
-.map-wrapper iframe:hover {
+.map-iframe {
+    width: 100%;
+    height: 220px;
+    min-height: 180px;
+    border: 0;
+    border-radius: 16px;
+    display: block;
+    filter: saturate(0.8) contrast(1.1);
+    transition: var(--transition-smooth);
+    contain: layout style;
+    will-change: transform;
+}
+
+.map-iframe:hover {
     filter: saturate(1) contrast(1);
 }
 
-/* Animaciones de entrada */
+/* =========================================
+   ANIMACIONES DE ENTRADA
+   ========================================= */
 .fade-in {
     opacity: 0;
     transform: translateY(15px);
@@ -378,50 +416,46 @@ body {
 .staggered-5 { animation-delay: 0.5s; }
 .staggered-6 { animation-delay: 0.6s; }
 
-/* Desktop */
+/* =========================================
+   RESPONSIVE
+   ========================================= */
 @media (min-width: 600px) {
     .card-container { margin: 40px auto; border-radius: 40px; }
-    .map-wrapper iframe { height: 220px; }
     .profile-image-wrapper { width: 170px; height: 170px; }
     .saw-decoration { width: 50px; height: 50px; bottom: 12px; right: 12px; }
 }
 
-/* Mobile small */
 @media (max-width: 480px) {
     .saw-decoration { width: 36px; height: 36px; bottom: 4px; right: 4px; }
     .profile-name { font-size: 24px; }
     .primary-btn { height: 56px; font-size: 14px; }
     .action-btn { width: 54px; height: 54px; }
+    .map-iframe { height: 200px; min-height: 160px; border-radius: 14px; }
+    .map-wrapper { border-radius: 14px; }
 }
 
-/* Accesibilidad: reducir movimiento */
+/* Formas de fondo: ajustes móvil */
+@media (max-width: 600px) {
+    .bg-shape {
+        opacity: 0.25;
+        filter: blur(60px);
+        animation: none;
+    }
+    .shape-1 { width: 180px; height: 180px; top: 5%; left: -5%; }
+    .shape-2 { width: 200px; height: 200px; bottom: -5%; right: -5%; }
+    .shape-3 { width: 140px; height: 140px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+}
+
+/* =========================================
+   ACCESIBILIDAD
+   ========================================= */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
     .bg-shape { display: none; }
     .saw-decoration { display: none; }
-}
-/* ✨ Reset de bordes para section-title */
-.section-title {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    margin: 0 0 var(--spacing-micro) 0;
-    padding: 0;
-}
-
-/* Wrapper para título de sección (evita conflictos con JS) */
-.social-title-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    pointer-events: none; /* No interfiere con clics */
-}
-
-.social-title-wrapper .section-title {
-    pointer-events: auto; /* El texto sí recibe eventos si los necesita */
 }
