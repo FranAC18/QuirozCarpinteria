@@ -1,27 +1,28 @@
 const cardData = {
     profile: {
-        name: "SRAW Cia. Ltda",
-        title: "Servicios en operaciones petroleras.",
-        description: "Instrumentación • Monitoreo • Detección de gases • LEL • H2S",
+        name: "Quiroz Carpintería",
+        title: "Arte en madera con Identidad",
+        description: "Muebles personalizados • Diseño y fabricación • Calidad y tradición",
         // La imagen que se cargará, sube tu logo a la carpeta assets/img/felipelarrea.png
-        image: "assets/img/srwacialtda.png",
+        image: "assets/img/Quiroz.png",
         // Imagen de respaldo si no encuentra la principal
-        fallbackImage: "assets/img/fallback.png"
+        fallbackImage: "assets/img/Quiroz.png"
     },
     contact: {
-        phone: "593994497269", // Solo números y código de país, usado para enlaces de WhatsApp y llamada
-        phoneDisplay: "+593 99 449 7269", // Usado para mostrar visualmente en la vCard
-        email: "washington.hidalgo@srawcialtda.com",
+        phone: "593998939227", // Solo números y código de país, usado para enlaces de WhatsApp y llamada
+        phoneDisplay: "+593 99 893 9227", // Usado para mostrar visualmente en la vCard
+        email: "",
         whatsappMessage: "Hola, me gustaría obtener más información sobre sus servicios.",
-        company: "SRWA Cia. Ltda",
+        company: "Quiroz Carpintería",
         note: "Servicios en operaciones petroleras.",
         url: "https://srawcialtda.vercel.app/",
         address: "Ángel de Ugarte 13-08 y Antonio Cabrera, El Coca, Ecuador", // Texto para SEO
-        googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d997.4215414496241!2d-76.98256893038555!3d-0.46634069997056093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d7a50dff36abff%3A0x295d6d0a3a9df12e!2sAntonio%20Cabrera%2013-08%2C%20Francisco%20de%20Orellana%20220202!5e0!3m2!1ses!2sec!4v1774043941329!5m2!1ses!2sec"
+        googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19514.146046953483!2d-78.951733654179!3d-2.549799250875259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd671fef3cc28f%3A0x9c2dd46921b71674!2sTaller%20De%20Carpinter%C3%ADa%20Quiroz!5e1!3m2!1ses!2sec!4v1775443965239!5m2!1ses!2sec"
     },
     social: [
-        { name: "Web", url: "https://srawcialtda.com", icon: "globe" },
-        { name: "Facebook", url: "https://www.facebook.com/profile.php?id=61586049040092", icon: "facebook" },
+        { name: "Instagram", url: "https://www.instagram.com/quirozcarpinteria/", icon: "instagram" },
+        { name: "Facebook", url: "https://www.facebook.com/profile.php?id=61582727997562", icon: "facebook" },
+        { name: "TikTok", url: "https://www.tiktok.com/@quirozcarpinteria", icon: "music-2" },
         // Lucide usa íconos generales así que 'music-2' o 'video' puede servir como tiktok de manera nativa sin recargar svgs personalizados
 
     ]

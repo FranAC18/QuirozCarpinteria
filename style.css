@@ -1,36 +1,37 @@
 :root {
-    /* Fondos y Temática Light (Basado en #d3ddf2) */
-    --bg-color: #d3ddf2; 
+    /* Paleta Base: Grises Industriales y Carbono */
+    --bg-color: #d3d4d9;           /* Gris Claro (Fondo principal) */
     
-    /* Variables de Marca: Deep Blue & Lavender Tech */
-    --accent-primary: #7caaf1;     /* Azul Cielo (Botones principales) */
-    --accent-secondary: #8c8cbe;   /* Lavanda (Elementos de apoyo) */
-    --accent-highlight: #7a80b6;   /* Lavanda Profundo (Estados activos) */
-    --accent-hover-details: #575b63; /* Gris para hovers sutiles */
+    /* Variables de Marca: Dark Mode Tech & Muted Purple */
+    --accent-primary: #040404;     /* Negro Puro (Contraste fuerte para botones/iconos) */
+    --accent-secondary: #5c5e62;   /* Gris Piedra (Elementos de apoyo) */
+    --accent-highlight: #847c84;   /* Malva Ceniza (El toque de color para estados activos) */
+    --accent-hover-details: #7a7b84; /* Gris Medio para hovers */
     
-    /* iOS 26 Glassmorphism - Optimizado para paleta Azul/Lavanda */
-    --glass-bg: rgba(255, 255, 255, 0.7); 
-    --glass-border: rgba(140, 140, 190, 0.3); /* Basado en #8c8cbe */
-    --glass-shadow: 0 10px 40px 0 rgba(12, 20, 98, 0.12); /* Sombra basada en el azul profundo #0c1462 */
-    --glass-blur: blur(25px);
+    /* iOS 26 Glassmorphism - Adaptado a Paleta Neutra */
+    --glass-bg: rgba(255, 255, 255, 0.45); 
+    --glass-border: rgba(124, 133, 137, 0.3); /* Basado en #7c8589 */
+    --glass-shadow: 0 12px 45px 0 rgba(44, 45, 49, 0.15); /* Sombra basada en #2c2d31 */
+    --glass-blur: blur(20px) saturate(160%); /* Aumentamos saturación para que el gris no se vea "muerto" */
     
-    /* Textos (Legibilidad máxima) */
-    --text-primary: #0c1462;       /* Azul Marino Profundo (Contraste máximo) */
-    --text-secondary: #575b63;     /* Gris azulado para info secundaria */
+    /* Textos (Legibilidad y Jerarquía) */
+    --text-primary: #2c2d31;       /* Antracita (Para lectura prolongada) */
+    --text-secondary: #3c4445;     /* Gris Pizarra (Subtítulos e info técnica) */
+    --text-on-dark: #d3d4d9;       /* Texto claro para botones negros */
     
-    /* Background Shapes (Gradientes etéreos) */
-    --shape-1: #7caaf1;            /* Azul brillante */
-    --shape-2: #8c8cbe;            /* Lavanda */
-    --shape-3: rgba(211, 221, 242, 0.5); /* Refuerzo del fondo */
+    /* Background Shapes (Gradientes de profundidad) */
+    --shape-1: #7a7b84;            /* Gris azulado */
+    --shape-2: #847c84;            /* Malva apagado */
+    --shape-3: #7c8589;            /* Acero */
 
-    /* Espaciado UX Premium */
+    /* Espaciado UX Premium (Consistente) */
     --spacing-micro: 16px;
     --spacing-base: 24px;
     --spacing-large: 32px;
 
     /* Transiciones fluidas */
-    --transition-fast: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: all 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 350ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * {
