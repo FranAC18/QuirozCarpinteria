@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title id="page-title">SRAW Cia. Ltda - Tarjeta Digital</title>
+    <title id="page-title">Quiroz Carpintería - Tarjeta Digital</title>
     <meta name="description" id="page-desc" content="Servicios en operaciones petroleras.">
 
     <meta property="og:type" content="website">
@@ -30,17 +30,12 @@
 </head>
 
 <body>
-    <!-- Background Blur Shapes -->
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
-    <div class="bg-shape shape-3"></div>
 
     <main class="card-container">
         <!-- 8.1 Header (Identidad) -->
         <header class="profile-header fade-in">
             <div class="profile-image-wrapper">
                 <div class="profile-image-blur" id="profile-blur"></div>
-                <!-- El onerror previene errores si la imagen no existe y carga un fallback local/remoto -->
                 <img src="" alt="Profile Image" id="profile-image" class="profile-image"
                     onerror="this.src='assets/img/srwacialtda.png'">
             </div>
@@ -49,24 +44,34 @@
             <p id="profile-description" class="profile-description"></p>
         </header>
 
-        <!-- 8.2 Acciones Rápidas -->
-        <section class="quick-actions fade-in staggered-1" id="quick-actions">
-            <!-- Inyectado mediante data.js y script.js -->
-        </section>
-
-
-        <!-- 8.3 Botón Principal (Save Contact) -->
-        <section class="main-action fade-in staggered-2">
+        <section class="actions-grid fade-in staggered-2">
             <button id="save-contact-btn" class="primary-btn">
-                Guardar contacto
+                <span>Guardar Contacto</span>
             </button>
+
+            <div class="quick-actions" id="quick-actions">
+                <a href="#" class="action-btn" id="call-btn">
+                    <svg class="icon">...</svg>
+                </a>
+                <a href="#" class="action-btn" id="whatsapp-btn">
+                    <svg class="icon">...</svg>
+                </a>
+            </div>
         </section>
 
         <!-- Separador sutil -->
         <hr class="section-divider fade-in staggered-3">
 
-        <!-- 8.4 Redes Sociales -->
-        <section class="social-links fade-in staggered-3" id="social-links">
+        <!-- Título de Redes (FUERA del contenedor que modifica JS) -->
+        <div class="social-title-wrapper fade-in staggered-3" style="text-align: center; margin: -4px 0 8px 0;">
+            <p class="section-title"
+                style="font-size: 1rem; color: var(--text-primary); border: none; outline: none; box-shadow: none; margin: 0; padding: 0;">
+                Nuestras Redes Sociales
+            </p>
+        </div>
+
+        <!-- 8.4 Redes Sociales (SOLO para los iconos inyectados por JS) -->
+        <section class="social-links fade-in staggered-3" id="social-links" style="margin-bottom: 4px;">
             <!-- Inyectado mediante data.js y script.js -->
         </section>
 
@@ -80,12 +85,10 @@
             </button>
         </section>
 
-
         <!-- 16. Mapa Interactivo (Google Maps) -->
         <section class="map-section fade-in staggered-6" id="map-section">
-            <h3 class="section-title">Visítanos</h3>
+            <h3 class="section-title" style="border: none; outline: none; box-shadow: none;">Visítanos</h3>
             <div class="map-wrapper">
-                <!-- El iframe de Google Maps se insertará aquí -->
                 <iframe id="google-map" class="map-iframe"
                     style="border:0; border-radius: 16px; width: 100%; height: 300px;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
@@ -93,12 +96,16 @@
             </div>
         </section>
 
+        <!-- Derechos de autor -->
+        <p class="section-title"
+            style="font-size: 0.7rem; color: var(--text-primary); border: none; outline: none; box-shadow: none; margin: 12px 0 0 0; padding: 0; text-align: center;">
+            Quiroz Carpintería© 2026
+        </p>
 
     </main>
 
-    <!-- Archivo de Configuración de Datos (DEBE ir antes de script.js) -->
+    <!-- Archivo de Configuración de Datos -->
     <script src="data.js"></script>
-
     <!-- Custom JS -->
     <script src="script.js"></script>
 </body>

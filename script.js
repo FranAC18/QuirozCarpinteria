@@ -35,7 +35,6 @@ function populateDOM() {
     quickActionsContainer.innerHTML = `
         <a href="${waUrl}" target="_blank" class="action-btn" aria-label="WhatsApp">${LUCIDE_ICONS.whatsapp}</a>
         <a href="tel:+${cardData.contact.phone}" class="action-btn" aria-label="Llamar">${LUCIDE_ICONS.phone}</a>
-        <a href="mailto:${cardData.contact.email}" class="action-btn" aria-label="Email">${LUCIDE_ICONS.mail}</a>
     `;
 
     // 4. Redes Sociales (USANDO EL DICCIONARIO)

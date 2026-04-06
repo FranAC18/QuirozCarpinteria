@@ -1,6 +1,6 @@
 const cardData = {
     profile: {
-        name: "Quiroz Carpintería",
+        name: "QUIROZ CARPINTERÍA",
         title: "Arte en madera con Identidad",
         description: "Muebles personalizados • Diseño y fabricación • Calidad y tradición",
         // La imagen que se cargará, sube tu logo a la carpeta assets/img/felipelarrea.png
