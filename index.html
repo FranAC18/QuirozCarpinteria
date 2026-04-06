@@ -1,121 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title id="page-title">Quiroz Carpintería - Tarjeta Digital</title>
-    <meta name="description" id="page-desc" content="Servicios en operaciones petroleras.">
+    <meta
+        name="description"
+        id="page-desc"
+        content="Tarjeta digital de Quiroz Carpintería con contacto directo, redes sociales y ubicación."
+    >
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://QuirozCarpinteria.vercel.app/">
+    <meta property="og:url" content="https://quiroz-carpinteria.vercel.app/">
     <meta property="og:title" content="Quiroz Carpintería - Tarjeta Digital">
-    <meta property="og:description" content="🪵 Creamos muebles únicos y resistentes.">
+    <meta property="og:description" content="Creamos muebles únicos, resistentes y hechos a tu medida.">
     <meta property="og:image" content="https://quiroz-carpinteria.vercel.app/assets/img/IMG.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Quiroz Carpintería">
-    <meta name="twitter:description" content="🪵 Creamos muebles únicos y resistentes.">
+    <meta name="twitter:description" content="Creamos muebles únicos, resistentes y hechos a tu medida.">
     <meta name="twitter:image" content="https://quiroz-carpinteria.vercel.app/assets/img/IMG.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/QuirozLogo.png">
     <link rel="apple-touch-icon" href="assets/img/IMG.jpg">
 
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <main class="card-container">
-        <!-- 8.1 Header (Identidad) -->
         <header class="profile-header fade-in">
             <div class="profile-image-wrapper">
                 <div class="profile-image-blur" id="profile-blur"></div>
-                <img src="" alt="Profile Image" id="profile-image" class="profile-image"
-                    onerror="this.src='assets/img/srwacialtda.png'">
+                <img
+                    src=""
+                    alt="Logo de Quiroz Carpintería"
+                    id="profile-image"
+                    class="profile-image"
+                    onerror="this.src='assets/img/Quiroz.png'"
+                >
             </div>
             <h1 id="profile-name" class="profile-name"></h1>
             <h2 id="profile-title" class="profile-title"></h2>
             <p id="profile-description" class="profile-description"></p>
         </header>
 
-        <section class="actions-grid fade-in staggered-2">
-            <button id="save-contact-btn" class="primary-btn">
-                <span>Guardar Contacto</span>
+        <section class="actions-grid fade-in staggered-2" aria-label="Acciones principales">
+            <button id="save-contact-btn" class="primary-btn" type="button">
+                <span>Guardar contacto</span>
             </button>
 
             <div class="quick-actions" id="quick-actions">
-                <a href="#" class="action-btn" id="call-btn">
-                    <svg class="icon">...</svg>
-                </a>
-                <a href="#" class="action-btn" id="whatsapp-btn">
-                    <svg class="icon">...</svg>
-                </a>
+                <a href="#" class="action-btn" id="call-btn" aria-label="Llamar"></a>
+                <a href="#" class="action-btn" id="whatsapp-btn" aria-label="Escribir por WhatsApp"></a>
             </div>
         </section>
 
-        <!-- Separador sutil -->
         <hr class="section-divider fade-in staggered-3">
 
-        <!-- Título de Redes (FUERA del contenedor que modifica JS) -->
-        <div class="social-title-wrapper fade-in staggered-3" style="text-align: center; margin: -4px 0 8px 0;">
-            <p class="section-title"
-                style="font-size: 1rem; color: var(--text-primary); border: none; outline: none; box-shadow: none; margin: 0; padding: 0;">
-                Nuestras Redes Sociales
-            </p>
+        <div class="social-title-wrapper fade-in staggered-3">
+            <p class="section-title">Nuestras redes sociales</p>
         </div>
 
-        <!-- 8.4 Redes Sociales (SOLO para los iconos inyectados por JS) -->
-        <section class="social-links fade-in staggered-3" id="social-links" style="margin-bottom: 4px;">
-            <!-- Inyectado mediante data.js y script.js -->
-        </section>
+        <section class="social-links fade-in staggered-3" id="social-links" aria-label="Redes sociales"></section>
 
-        <!-- Separador sutil -->
         <hr class="section-divider fade-in staggered-4">
 
-        <!-- 15. Botón Compartir -->
         <section class="share-section fade-in staggered-5">
-            <button id="share-btn" class="secondary-btn">
-                Compartir Tarjeta
+            <button id="share-btn" class="secondary-btn" type="button">
+                Compartir tarjeta
             </button>
         </section>
 
-        <!-- 16. Mapa Interactivo (Google Maps) -->
         <section class="map-section fade-in staggered-6" id="map-section">
-            <h3 class="section-title" style="border: none; outline: none; box-shadow: none;">Visítanos</h3>
+            <h3 class="section-title">Visítanos</h3>
+            <p id="business-address" class="address-text"></p>
             <div class="map-wrapper">
-                <iframe id="google-map" class="map-iframe" title="Ubicación de Quiroz Carpintería" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade" allowfullscreen
-                    style="border:0; border-radius: 16px; width: 100%; height: 220px; min-height: 180px; display: block;"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7!2d-78.5!3d-0.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTAnNDguMCJTIDc4wrAzMCcwMC4wIlc!5e0!3m2!1ses!2sec!4v1234567890">
-                </iframe>
-                <!-- Fallback si el mapa no carga -->
+                <iframe
+                    id="google-map"
+                    class="map-iframe"
+                    title="Ubicación de Quiroz Carpintería"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7!2d-78.5!3d-0.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTAnNDguMCJTIDc4wrAzMCcwMC4wIlc!5e0!3m2!1ses!2sec!4v1234567890"
+                ></iframe>
                 <noscript>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); padding: 12px;">
-                        🗺️ <a href="https://maps.google.com" target="_blank"
-                            style="color: var(--accent-primary); text-decoration: none;">Ver mapa en Google Maps</a>
+                    <p class="map-fallback">
+                        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Ver mapa en Google Maps</a>
                     </p>
                 </noscript>
             </div>
         </section>
 
-        <!-- Derechos de autor -->
-        <p class="section-title"
-            style="font-size: 0.7rem; color: var(--text-primary); border: none; outline: none; box-shadow: none; margin: 12px 0 0 0; padding: 0; text-align: center;">
-            Quiroz Carpintería© 2026
-        </p>
-
+        <p class="footer-copy">Quiroz Carpintería © 2026</p>
     </main>
 
-    <!-- Archivo de Configuración de Datos -->
     <script src="data.js"></script>
-    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
-
 </html>

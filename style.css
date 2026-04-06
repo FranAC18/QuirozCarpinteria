@@ -1,35 +1,22 @@
 :root {
-    /* Paleta Base: Grises Industriales y Carbono */
     --bg-color: #d3d4d9;
-
-    /* Variables de Marca */
     --accent-primary: #040404;
     --accent-secondary: #5c5e62;
     --accent-highlight: #847c84;
     --accent-hover-details: #7a7b84;
-
-    /* iOS 26 Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.45);
     --glass-border: rgba(124, 133, 137, 0.3);
     --glass-shadow: 0 12px 45px 0 rgba(44, 45, 49, 0.15);
     --glass-blur: blur(20px) saturate(160%);
-
-    /* Textos */
     --text-primary: #2c2d31;
-    --text-secondary: #3c4445;
+    --text-secondary: #4d5454;
     --text-on-dark: #d3d4d9;
-
-    /* Background Shapes */
     --shape-1: #7a7b84;
     --shape-2: #847c84;
     --shape-3: #7c8589;
-
-    /* Espaciado UX Premium */
     --spacing-micro: 16px;
     --spacing-base: 24px;
     --spacing-large: 32px;
-
-    /* Transiciones */
     --transition-fast: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 350ms cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -41,10 +28,9 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-image: url('assets/img/wood-bg.jpg');
-    background-color: #13121267;
-    background-blend-mode: overlay;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-image: linear-gradient(rgba(19, 18, 18, 0.38), rgba(19, 18, 18, 0.2)), url('assets/img/wood-bg.jpg');
+    background-color: var(--bg-color);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -60,16 +46,13 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* =========================================
-   FORMAS DE FONDO ANIMADAS
-   ========================================= */
 .bg-shape {
     position: fixed;
     border-radius: 50%;
     filter: blur(80px);
     z-index: -1;
     animation: float 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    opacity: 0.5;
+    opacity: 0.45;
     pointer-events: none;
     will-change: transform;
     transform: translateZ(0);
@@ -85,23 +68,19 @@ body {
     100% { transform: translate(-40px, 60px) scale(0.9); }
 }
 
-/* =========================================
-   TARJETA CONTENEDOR
-   ========================================= */
 .card-container {
-    background-color: #ffffff;
-    background-blend-mode: overlay;
+    background: rgba(255, 255, 255, 0.76);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     border-radius: 36px;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     padding: var(--spacing-large) var(--spacing-base);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-large);
+    gap: 24px;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -110,16 +89,15 @@ body {
 .card-container::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
     z-index: 10;
     pointer-events: none;
 }
 
-/* =========================================
-   CABECERA & PERFIL
-   ========================================= */
 .profile-header {
     text-align: center;
     display: flex;
@@ -136,9 +114,11 @@ body {
 
 .profile-image-blur {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -149,7 +129,8 @@ body {
 
 .profile-image {
     position: relative;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
     z-index: 1;
@@ -158,62 +139,6 @@ body {
     background-color: var(--glass-bg);
 }
 
-/* ✨ SIERRA ANIMADA */
-.saw-decoration {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    width: 44px;
-    height: 44px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-}
-
-.saw-icon {
-    width: 100%;
-    height: 100%;
-    color: var(--accent-primary);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-    animation: saw-cut 1.8s ease-in-out infinite;
-    transform-origin: center;
-}
-
-.saw-sparks {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,200,50,0.6) 0%, transparent 70%);
-    opacity: 0;
-    animation: sparks-burst 1.8s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes saw-cut {
-    0%, 100% { transform: rotate(-8deg) translateX(0); }
-    25% { transform: rotate(6deg) translateX(2px); }
-    50% { transform: rotate(-4deg) translateX(-1px); }
-    75% { transform: rotate(8deg) translateX(3px); }
-}
-
-@keyframes sparks-burst {
-    0%, 60%, 100% { opacity: 0; transform: scale(0.3); }
-    20%, 40% { opacity: 0.7; transform: scale(1.2); }
-}
-
-.profile-image-wrapper:hover .saw-icon {
-    animation-duration: 0.9s;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
-}
-
-.profile-image-wrapper:hover .saw-sparks {
-    animation-duration: 0.9s;
-}
-
-/* Tipografía */
 .profile-name {
     font-family: 'Playfair Display', 'Times New Roman', serif;
     font-size: 27px;
@@ -226,20 +151,19 @@ body {
 .profile-title {
     font-size: 1rem;
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .profile-description {
-    font-size: 0.9rem;
-    color: var(--text-primary);
-    line-height: 1.3;
-    max-width: 90%;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 92%;
 }
 
-/* =========================================
-   BOTONES UNIFICADOS - Glassmorphism
-   ========================================= */
 .primary-btn,
 .action-btn,
 .social-btn,
@@ -255,21 +179,18 @@ body {
     font-family: inherit;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     border: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     border-radius: 18px;
-
     font-weight: 600;
     font-size: 15px;
     color: var(--text-primary);
     transition: var(--transition-smooth);
 }
 
-/* Hover */
 .primary-btn:hover,
 .action-btn:hover,
 .social-btn:hover,
@@ -279,7 +200,6 @@ body {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
 }
 
-/* Active */
 .primary-btn:active,
 .action-btn:active,
 .social-btn:active,
@@ -288,13 +208,19 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* Dimensiones contextuales */
+.primary-btn:focus-visible,
+.action-btn:focus-visible,
+.social-btn:focus-visible,
+.secondary-btn:focus-visible {
+    outline: 2px solid rgba(4, 4, 4, 0.7);
+    outline-offset: 3px;
+}
+
 .primary-btn { flex: 2; height: 60px; }
 .action-btn  { width: 60px; height: 60px; padding: 0; flex-shrink: 0; }
 .social-btn  { padding: 14px; }
 .secondary-btn { width: 100%; height: 56px; }
 
-/* Iconos */
 .primary-btn .icon,
 .action-btn .icon,
 .social-btn .icon,
@@ -306,9 +232,6 @@ body {
     color: inherit;
 }
 
-/* =========================================
-   LAYOUT & SECCIONES
-   ========================================= */
 .actions-grid {
     display: flex;
     align-items: center;
@@ -341,36 +264,42 @@ body {
 .share-section {
     display: flex;
     justify-content: center;
-    margin-top: -12px;
+    margin-top: -8px;
 }
 
-/* Títulos de sección (Reset limpio) */
 .section-title {
-    display: flex; align-items: center; justify-content: center;
-    gap: 8px; font-size: 0.9rem; margin: 0 0 var(--spacing-micro) 0; padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    margin: 0 0 var(--spacing-micro) 0;
+    padding: 0;
     color: var(--text-secondary);
-    font-weight: 600;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
 }
 
 .social-title-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
-    pointer-events: none;
 }
 
-.social-title-wrapper .section-title {
-    pointer-events: auto;
+.map-section {
+    padding: 4px 0 0;
+    text-align: center;
 }
 
-/* =========================================
-   MAPA
-   ========================================= */
-.map-section { padding: 10px; text-align: center; }
+.address-text {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: -4px 0 14px;
+}
 
 .map-wrapper {
     position: relative;
@@ -388,7 +317,7 @@ body {
     border: 0;
     border-radius: 16px;
     display: block;
-    filter: saturate(0.8) contrast(1.1);
+    filter: saturate(0.85) contrast(1.08);
     transition: var(--transition-smooth);
     contain: layout style;
     will-change: transform;
@@ -398,16 +327,36 @@ body {
     filter: saturate(1) contrast(1);
 }
 
-/* =========================================
-   ANIMACIONES DE ENTRADA
-   ========================================= */
+.map-fallback {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    padding: 12px;
+}
+
+.map-fallback a {
+    color: var(--accent-primary);
+    text-decoration: none;
+}
+
+.footer-copy {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 4px;
+}
+
 .fade-in {
     opacity: 0;
     transform: translateY(15px);
     animation: fadeIn 250ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 .staggered-1 { animation-delay: 0.1s; }
 .staggered-2 { animation-delay: 0.2s; }
@@ -416,17 +365,12 @@ body {
 .staggered-5 { animation-delay: 0.5s; }
 .staggered-6 { animation-delay: 0.6s; }
 
-/* =========================================
-   RESPONSIVE
-   ========================================= */
 @media (min-width: 600px) {
     .card-container { margin: 40px auto; border-radius: 40px; }
     .profile-image-wrapper { width: 170px; height: 170px; }
-    .saw-decoration { width: 50px; height: 50px; bottom: 12px; right: 12px; }
 }
 
 @media (max-width: 480px) {
-    .saw-decoration { width: 36px; height: 36px; bottom: 4px; right: 4px; }
     .profile-name { font-size: 24px; }
     .primary-btn { height: 56px; font-size: 14px; }
     .action-btn { width: 54px; height: 54px; }
@@ -434,21 +378,18 @@ body {
     .map-wrapper { border-radius: 14px; }
 }
 
-/* Formas de fondo: ajustes móvil */
 @media (max-width: 600px) {
     .bg-shape {
         opacity: 0.25;
         filter: blur(60px);
         animation: none;
     }
+
     .shape-1 { width: 180px; height: 180px; top: 5%; left: -5%; }
     .shape-2 { width: 200px; height: 200px; bottom: -5%; right: -5%; }
     .shape-3 { width: 140px; height: 140px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 }
 
-/* =========================================
-   ACCESIBILIDAD
-   ========================================= */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -456,6 +397,8 @@ body {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-    .bg-shape { display: none; }
-    .saw-decoration { display: none; }
+
+    .bg-shape {
+        display: none;
+    }
 }

@@ -8,60 +8,63 @@ const LUCIDE_ICONS = {
     share: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`,
     "user-plus": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>`,
     "music-2": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="8" cy="18" r="4"/><path d="M12 18V2l7 4"/></svg>`,
-    check: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="20 6 9 17 4 12"/></svg>`
+    check: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="20 6 9 17 4 12"/></svg>`,
+    copy: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`
 };
 
-function populateDOM() {
-    // 1. Metadata básica
+function setMetadata() {
+    document.title = `${cardData.profile.name} - Tarjeta Digital`;
     document.getElementById('page-title').textContent = `${cardData.profile.name} - Tarjeta Digital`;
-    document.getElementById('page-desc').content = `Tarjeta de presentación digital de ${cardData.profile.name}`;
+    document.getElementById('page-desc').setAttribute('content', cardData.contact.note);
+}
 
-    // 2. Perfil
+function populateDOM() {
+    setMetadata();
+
     const profileImg = document.getElementById('profile-image');
+    const profileBlur = document.getElementById('profile-blur');
     profileImg.src = cardData.profile.image;
     profileImg.onerror = function () {
         this.src = cardData.profile.fallbackImage;
-        document.getElementById('profile-blur').style.backgroundImage = `url(${cardData.profile.fallbackImage})`;
+        profileBlur.style.backgroundImage = `url(${cardData.profile.fallbackImage})`;
     };
-    document.getElementById('profile-blur').style.backgroundImage = `url(${cardData.profile.image})`;
+    profileBlur.style.backgroundImage = `url(${cardData.profile.image})`;
+
     document.getElementById('profile-name').textContent = cardData.profile.name;
     document.getElementById('profile-title').textContent = cardData.profile.title;
     document.getElementById('profile-description').textContent = cardData.profile.description;
+    document.getElementById('business-address').textContent = cardData.contact.address;
 
-    // 3. Acciones Rápidas (USANDO EL DICCIONARIO)
     const quickActionsContainer = document.getElementById('quick-actions');
     const waUrl = `https://wa.me/${cardData.contact.phone}?text=${encodeURIComponent(cardData.contact.whatsappMessage)}`;
-
     quickActionsContainer.innerHTML = `
-        <a href="${waUrl}" target="_blank" class="action-btn" aria-label="WhatsApp">${LUCIDE_ICONS.whatsapp}</a>
-        <a href="tel:+${cardData.contact.phone}" class="action-btn" aria-label="Llamar">${LUCIDE_ICONS.phone}</a>
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="WhatsApp" title="Escribir por WhatsApp">${LUCIDE_ICONS.whatsapp}</a>
+        <a href="tel:+${cardData.contact.phone}" class="action-btn" aria-label="Llamar" title="Llamar ahora">${LUCIDE_ICONS.phone}</a>
     `;
 
-    // 4. Redes Sociales (USANDO EL DICCIONARIO)
     const socialLinksContainer = document.getElementById('social-links');
     socialLinksContainer.innerHTML = '';
-    cardData.social.forEach(social => {
-        const a = document.createElement('a');
-        a.href = social.url;
-        a.target = "_blank";
-        a.className = "social-btn";
-        a.innerHTML = LUCIDE_ICONS[social.icon] || '';
-        socialLinksContainer.appendChild(a);
+    cardData.social.forEach((social) => {
+        const link = document.createElement('a');
+        link.href = social.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.className = 'social-btn';
+        link.setAttribute('aria-label', social.name);
+        link.setAttribute('title', social.name);
+        link.innerHTML = LUCIDE_ICONS[social.icon] || '';
+        socialLinksContainer.appendChild(link);
     });
 
-    // 5. Iconos en botones estáticos
     document.getElementById('save-contact-btn').insertAdjacentHTML('afterbegin', LUCIDE_ICONS['user-plus']);
     document.getElementById('share-btn').insertAdjacentHTML('afterbegin', LUCIDE_ICONS.share);
+
     const mapIframe = document.getElementById('google-map');
     if (mapIframe && cardData.contact.googleMapsEmbed) {
         mapIframe.src = cardData.contact.googleMapsEmbed;
     }
-
 }
 
-/**
- * Función para generar archivo vCard
- */
 function createVCard(data) {
     return `BEGIN:VCARD
 VERSION:3.0
@@ -71,61 +74,77 @@ TITLE:${data.profile.title}
 TEL;TYPE=CELL:${data.contact.phoneDisplay}
 EMAIL;TYPE=WORK:${data.contact.email}
 URL:${data.contact.url}
+ADR;TYPE=WORK:;;${data.contact.address};;;;
 NOTE:${data.contact.note.replace(/\n/g, '\\n')}
 END:VCARD`;
 }
 
-// Inicializar cuando el DOM esté completamente cargado
+async function copyToClipboard(text) {
+    if (!navigator.clipboard) {
+        return false;
+    }
+
+    try {
+        await navigator.clipboard.writeText(text);
+        return true;
+    } catch (error) {
+        console.error('No se pudo copiar el enlace:', error);
+        return false;
+    }
+}
+
+function setTemporaryButtonState(button, icon, text) {
+    const original = button.innerHTML;
+    button.innerHTML = `${icon}<span>${text}</span>`;
+
+    window.setTimeout(() => {
+        button.innerHTML = original;
+    }, 2000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Rellenar datos en pantalla
     populateDOM();
 
-    // 2. Configurar el botón de guardar contacto (vCard)
     const saveContactBtn = document.getElementById('save-contact-btn');
     saveContactBtn.addEventListener('click', () => {
         const vCardContent = createVCard(cardData);
-
-        // Crear un Blob e iniciar descarga
         const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8' });
         const url = URL.createObjectURL(blob);
-
         const link = document.createElement('a');
+
         link.href = url;
         link.download = `${cardData.profile.name.replace(/\s+/g, '_')}_Contacto.vcf`;
 
         document.body.appendChild(link);
         link.click();
-
-        // Limpieza de memoria
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
 
-        // Feedback al usuario (opcional)
-        const originalText = saveContactBtn.innerHTML;
-        saveContactBtn.innerHTML = '<i data-lucide="check" class="icon"></i>¡Guardado!';
-        lucide.createIcons();
-
-        setTimeout(() => {
-            saveContactBtn.innerHTML = originalText;
-            lucide.createIcons();
-        }, 2000);
+        setTemporaryButtonState(saveContactBtn, LUCIDE_ICONS.check, '¡Guardado!');
     });
 
-    // 3. Configurar API Nativa Web Share
     const shareBtn = document.getElementById('share-btn');
-    if (!navigator.share) {
-        shareBtn.parentElement.style.display = 'none'; // Ocultar si el navegador no lo soporta
-    } else {
-        shareBtn.addEventListener('click', async () => {
+    shareBtn.addEventListener('click', async () => {
+        const shareData = {
+            title: `${cardData.profile.name} - ${cardData.profile.title}`,
+            text: `Aquí tienes la tarjeta digital de ${cardData.profile.name}.`,
+            url: cardData.contact.url
+        };
+
+        if (navigator.share) {
             try {
-                await navigator.share({
-                    title: `${cardData.profile.name} - ${cardData.profile.title}`,
-                    text: `Aquí tienes la tarjeta digital de ${cardData.profile.name}.`,
-                    url: cardData.contact.url
-                });
+                await navigator.share(shareData);
+                return;
             } catch (error) {
-                console.log('Cancelado / Error al compartir:', error);
+                if (error.name !== 'AbortError') {
+                    console.error('Error al compartir:', error);
+                }
             }
-        });
-    }
+        }
+
+        const copied = await copyToClipboard(cardData.contact.url);
+        if (copied) {
+            setTemporaryButtonState(shareBtn, LUCIDE_ICONS.copy, 'Enlace copiado');
+        }
+    });
 });
