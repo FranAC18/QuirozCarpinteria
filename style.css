@@ -82,7 +82,6 @@ body {
 
 /* Tarjeta Contenedor */
 .card-container {
-    background-image: url('assets/img/textura.jpg');
     background-color: #ffffff;
     background-blend-mode: overlay;
     backdrop-filter: var(--glass-blur);
